@@ -1,7 +1,5 @@
 package org.pet.shop.controller;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.pet.shop.dto.PetDto;
@@ -132,6 +130,32 @@ public class PetShopControllerIntegrationTest {
         assertEquals("wrong pet father", newFather, updatedPet.getParents().getFather());
         assertEquals("wrong pet mother", newMother, updatedPet.getParents().getMother());
     }
+
+    @Test
+    public void testUpdatePetWithInvalidPetId(){
+        String petMother = UUID.randomUUID().toString();
+        String petFather = UUID.randomUUID().toString();
+
+        String updatePetJson =
+                "{\n" +
+                        "  \"id\": \""+UUID.randomUUID()+"\",\n" +
+                        "  \"name\": \"Puppy bl\",\n" +
+                        "  \"type\": \"dog\",\n" +
+                        "  \"color\": \"white\",\n" +
+                        "  \"parents\" : {\n" +
+                        "    \"mother\": \""+petMother+"\",\n" +
+                        "    \"father\": \""+petFather+"\"\n" +
+                        "  }\n" +
+                        "}";
+        HttpEntity<String> request = new HttpEntity<>(updatePetJson,headers);
+        ResponseEntity<String> putResponse = restTemplete.exchange(
+                "http://localhost:" + port + "/pets",
+                HttpMethod.PUT,request,String.class);
+
+        // Verify Invalid PUT
+        assertEquals("wrong http status", HttpStatus.BAD_REQUEST, putResponse.getStatusCode());
+    }
+
 
     private PetDto createPet() {
         String createPetJson =
