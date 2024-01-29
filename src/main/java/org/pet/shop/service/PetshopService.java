@@ -1,4 +1,4 @@
-package org.pet.shop;
+package org.pet.shop.service;
 
 import org.springframework.stereotype.Service;
 
