@@ -20,7 +20,7 @@ public class PetShopController
     @PostMapping
     @Operation(summary = "Create Pet", description = "Endpoint used to create a new pet")
     @ApiResponse(responseCode = "201", description = "Pet successfully created")
-    public ResponseEntity<PetDto> create(@RequestBody PetDto pet)
+    public ResponseEntity<PetDto> create(@RequestBody final PetDto pet)
     {
         PetDto createdPet = petshopService.create(pet);
         return new ResponseEntity<>(createdPet,HttpStatus.CREATED);
@@ -32,7 +32,7 @@ public class PetShopController
             @ApiResponse(responseCode = "200", description = "Pet found"),
             @ApiResponse(responseCode = "404", description = "Pet Not found")
     })
-    public ResponseEntity<PetDto> findPet(@PathVariable(name = "id", required = true) String petId)
+    public ResponseEntity<PetDto> findPet(@PathVariable(name = "id", required = true) final String petId)
     {
         PetDto pet = petshopService.findById(petId);
         return new ResponseEntity<>(pet,HttpStatus.OK);
@@ -44,7 +44,7 @@ public class PetShopController
             @ApiResponse(responseCode = "200", description = "Pet Updated"),
             @ApiResponse(responseCode = "400", description = "Pet Not found")
     })
-    public ResponseEntity<PetDto> updatePet(@RequestBody PetDto pet)
+    public ResponseEntity<PetDto> updatePet(@RequestBody final PetDto pet)
     {
         PetDto updatedPet = petshopService.updatePet(pet);
         return new ResponseEntity<>(updatedPet,HttpStatus.OK);

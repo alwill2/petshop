@@ -3,9 +3,9 @@ package org.pet.shop.service;
 import org.pet.shop.dto.PetDto;
 
 public interface PetShopService {
-    PetDto create(PetDto pet);
+    PetDto create(final PetDto pet);
 
-    PetDto updatePet(PetDto pet);
+    PetDto updatePet(final PetDto pet);
 
-    PetDto findById(String petId);
+    PetDto findById(final String petId);
 }

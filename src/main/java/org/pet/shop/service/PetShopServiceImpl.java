@@ -20,14 +20,14 @@ public class PetShopServiceImpl implements PetShopService{
     @Autowired
     private PetRepository petRepository;
     @Override
-    public PetDto create(PetDto petDto) {
+    public PetDto create(final PetDto petDto) {
         Pet newPet = petMapper.petDtoToPet(petDto);
         newPet = petRepository.save(newPet);
         return petMapper.petToPetDto(newPet);
     }
 
     @Override
-    public PetDto updatePet(PetDto petDto) {
+    public PetDto updatePet(final PetDto petDto) {
 
         if( petDto.getId() == null || !petRepository.findById(petDto.getId()).isPresent())
         {
@@ -39,7 +39,7 @@ public class PetShopServiceImpl implements PetShopService{
     }
 
     @Override
-    public PetDto findById(String petId) {
+    public PetDto findById(final String petId) {
         Optional<Pet> existingPet = petRepository.findById(petId);
         if(!existingPet.isPresent())
         {
