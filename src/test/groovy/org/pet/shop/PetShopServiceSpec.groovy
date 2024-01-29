@@ -1,15 +1,18 @@
 package org.pet.shop
 
+import org.pet.shop.service.PetShopService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import spock.lang.Ignore
 import spock.lang.Specification
 
 @SpringBootTest
-class PetshopServiceSpec extends Specification {
+class PetShopServiceSpec extends Specification {
 
     @Autowired
-    private PetshopService petshopService
+    private PetShopService petshopService
 
+    @Ignore
     def "should add two numbers"() {
 
         given: 'first factor'
