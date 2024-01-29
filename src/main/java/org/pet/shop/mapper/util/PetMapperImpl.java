@@ -6,7 +6,7 @@ import org.pet.shop.mapper.PetMapper;
 
 public class PetMapperImpl implements PetMapper {
     @Override
-    public PetDto petToPetDto(Pet petEntity) {
+    public PetDto petToPetDto(final Pet petEntity) {
         if(petEntity == null){
             return null;
         }
@@ -19,7 +19,7 @@ public class PetMapperImpl implements PetMapper {
     }
 
     @Override
-    public Pet petDtoToPet(PetDto petDto) {
+    public Pet petDtoToPet(final PetDto petDto) {
         if(petDto == null)
         {
             return  null;
