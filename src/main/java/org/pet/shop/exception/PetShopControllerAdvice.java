@@ -35,6 +35,6 @@ public class PetShopControllerAdvice {
             final PetShopApplicationException ex,
             final WebRequest webRequest)
     {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

@@ -94,8 +94,7 @@ public class PetShopControllerIntegrationTest {
                 "http://localhost:" + port + "/pets/" + UUID.randomUUID(),
                 HttpMethod.GET,request,String.class);
         // Verify Get Invalid Pet Id
-        assertEquals("wrong http status", HttpStatus.BAD_REQUEST, getPetResponse.getStatusCode());
-
+        assertEquals("wrong http status", HttpStatus.NOT_FOUND, getPetResponse.getStatusCode());
     }
 
     @Test

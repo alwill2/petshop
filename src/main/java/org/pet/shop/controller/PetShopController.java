@@ -1,5 +1,8 @@
 package org.pet.shop.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.pet.shop.dto.PetDto;
 import org.pet.shop.service.PetShopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,8 @@ public class PetShopController
     private PetShopService petshopService;
 
     @PostMapping
+    @Operation(summary = "Create Pet", description = "Endpoint used to create a new pet")
+    @ApiResponse(responseCode = "201", description = "Pet successfully created")
     public ResponseEntity<PetDto> create(@RequestBody PetDto pet)
     {
         PetDto createdPet = petshopService.create(pet);
@@ -22,6 +27,11 @@ public class PetShopController
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Get single Pet", description = "Endpoint used to get an existing pet using pet id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Pet found"),
+            @ApiResponse(responseCode = "404", description = "Pet Not found")
+    })
     public ResponseEntity<PetDto> findPet(@PathVariable(name = "id", required = true) String petId)
     {
         PetDto pet = petshopService.findById(petId);
@@ -29,6 +39,11 @@ public class PetShopController
     }
 
     @PutMapping
+    @Operation(summary = "Update a Pet", description = "Endpoint used to update an existing pet using pet. Pet Id is required")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Pet Updated"),
+            @ApiResponse(responseCode = "400", description = "Pet Not found")
+    })
     public ResponseEntity<PetDto> updatePet(@RequestBody PetDto pet)
     {
         PetDto updatedPet = petshopService.updatePet(pet);
