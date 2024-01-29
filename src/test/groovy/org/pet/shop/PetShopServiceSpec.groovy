@@ -1,15 +1,15 @@
 package org.pet.shop
 
-import org.pet.shop.service.PetshopService
+import org.pet.shop.service.PetShopService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest
-class PetshopServiceSpec extends Specification {
+class PetShopServiceSpec extends Specification {
 
     @Autowired
-    private PetshopService petshopService
+    private PetShopService petshopService
 
     def "should add two numbers"() {
 
