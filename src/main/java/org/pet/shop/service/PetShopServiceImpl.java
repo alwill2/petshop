@@ -2,6 +2,8 @@ package org.pet.shop.service;
 
 import org.pet.shop.domain.Pet;
 import org.pet.shop.dto.PetDto;
+import org.pet.shop.exception.PetShopExceptionBadRequest;
+import org.pet.shop.exception.PetShopExceptionNotFound;
 import org.pet.shop.mapper.PetMapper;
 import org.pet.shop.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,7 @@ public class PetShopServiceImpl implements PetShopService{
 
         if( petDto.getId() == null || !petRepository.findById(petDto.getId()).isPresent())
         {
-            throw new RuntimeException("Bad request");
+            throw new PetShopExceptionBadRequest("Pet with Id: " +petDto.getId()  + ": does not exist");
         }
         Pet existingPet = petMapper.petDtoToPet(petDto);
         existingPet = petRepository.save(existingPet);
@@ -41,7 +43,7 @@ public class PetShopServiceImpl implements PetShopService{
         Optional<Pet> existingPet = petRepository.findById(petId);
         if(!existingPet.isPresent())
         {
-            throw new RuntimeException("Not Found");
+            throw new PetShopExceptionNotFound("No Pets Found with Id : " +  petId);
         }
         return petMapper.petToPetDto(existingPet.get());
     }

@@ -1,7 +1,6 @@
 package org.pet.shop.mapper.util;
 
 import org.pet.shop.domain.Pet;
-import org.pet.shop.dto.ParentDto;
 import org.pet.shop.dto.PetDto;
 import org.pet.shop.mapper.PetMapper;
 
@@ -16,12 +15,6 @@ public class PetMapperImpl implements PetMapper {
         petDto.setColor(petEntity.getColor());
         petDto.setType(petEntity.getType());
         petDto.setId(petEntity.getId());
-
-        ParentDto parentDto = new ParentDto();
-        parentDto.setFather(petEntity.getFather());
-        parentDto.setMother(petEntity.getMother());
-
-        petDto.setParents(parentDto);
         return petDto;
     }
 
@@ -36,8 +29,6 @@ public class PetMapperImpl implements PetMapper {
         pet.setType(petDto.getType());
         pet.setName(petDto.getName());
         pet.setId(petDto.getId());
-        pet.setFather(petDto.getParents().getFather());
-        pet.setMother(petDto.getParents().getMother());
         return pet;
     }
 }
