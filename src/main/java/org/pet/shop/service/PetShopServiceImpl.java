@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class PetShopServiceImpl implements PetShopService{
@@ -28,7 +27,7 @@ public class PetShopServiceImpl implements PetShopService{
     @Override
     public PetDto updatePet(PetDto petDto) {
 
-        if( petDto.getId() == null || !petRepository.findById(UUID.fromString(petDto.getId())).isPresent())
+        if( petDto.getId() == null || !petRepository.findById(petDto.getId()).isPresent())
         {
             throw new RuntimeException("Bad request");
         }
@@ -39,7 +38,7 @@ public class PetShopServiceImpl implements PetShopService{
 
     @Override
     public PetDto findById(String petId) {
-        Optional<Pet> existingPet = petRepository.findById(UUID.fromString(petId));
+        Optional<Pet> existingPet = petRepository.findById(petId);
         if(!existingPet.isPresent())
         {
             throw new RuntimeException("Not Found");
