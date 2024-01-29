@@ -7,5 +7,5 @@ public interface PetShopService {
 
     PetDto updatePet(PetDto pet);
 
-    PetDto findById();
+    PetDto findById(String petId);
 }

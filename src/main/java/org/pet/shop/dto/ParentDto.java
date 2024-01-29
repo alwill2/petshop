@@ -1,25 +1,23 @@
 package org.pet.shop.dto;
 
-import java.util.UUID;
-
 public class ParentDto
 {
-    private UUID father;
-    private UUID mother;
+    private String father;
+    private String mother;
 
-    public UUID getFather() {
+    public String getFather() {
         return father;
     }
 
-    public void setFather(UUID father) {
+    public void setFather(String father) {
         this.father = father;
     }
 
-    public UUID getMother() {
+    public String getMother() {
         return mother;
     }
 
-    public void setMother(UUID mother) {
+    public void setMother(String mother) {
         this.mother = mother;
     }
 }

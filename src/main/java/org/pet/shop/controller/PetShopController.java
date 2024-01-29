@@ -13,7 +13,6 @@ import java.util.UUID;
 @RequestMapping("/pets")
 public class PetShopController
 {
-
     @Autowired
     private PetShopService petshopService;
 
@@ -25,9 +24,9 @@ public class PetShopController
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PetDto> findPet(@PathVariable(name = "id", required = true) UUID petId)
+    public ResponseEntity<PetDto> findPet(@PathVariable(name = "id", required = true) String petId)
     {
-        PetDto pet = petshopService.findById();
+        PetDto pet = petshopService.findById(petId);
         return new ResponseEntity<>(pet,HttpStatus.OK);
     }
 

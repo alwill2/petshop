@@ -2,33 +2,31 @@ package org.pet.shop.domain;
 
 import jakarta.persistence.*;
 
-import java.util.UUID;
-
 @Entity
 @Table(name = "pet")
 public class Pet
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private String id;
     private String name;
     private String type;
     private String color;
-    @JoinColumn(name = "father")
-    @ManyToOne
-    private Pet father;
-    @JoinColumn(name = "mother" )
-    @ManyToOne
-    private Pet mother;
+    private String father;
+    private String mother;
 
     public Pet() {
     }
 
-    public UUID getId() {
+    public Pet(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -56,19 +54,19 @@ public class Pet
         this.color = color;
     }
 
-    public Pet getFather() {
+    public String getFather() {
         return father;
     }
 
-    public void setFather(Pet father) {
+    public void setFather(String father) {
         this.father = father;
     }
 
-    public Pet getMother() {
+    public String getMother() {
         return mother;
     }
 
-    public void setMother(Pet mother) {
+    public void setMother(String mother) {
         this.mother = mother;
     }
 }
